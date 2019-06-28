@@ -15,20 +15,27 @@ npm run serve
 npm run build
 ```
 
-### Run your tests
-```
-npm run test
-```
-
 ### Lints and fixes files
 ```
 npm run lint
 ```
 
-### Run your unit tests
-```
-npm run test:unit
-```
+## Go through
+1. Open http://localhost:8080 in the browser
+2. Input the require fields
+  2.1 Select the ware collection
+  2.2 Select the trailer
+  2.3 Select the routing cities
+3. Click on Submit button
+4. The page should be directed to http://localhost:8080/mission
+  - This page is not yet beautified
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Todo
+### Craft the mission page
+- Right now the mission page directly shows the JSON data. It should be beautify for user friendly.
+
+### Suggested journey
+- Can integrate with APIs, like Google maps APIs, to provides more precise suggestion.
+
+### Interact with the backend and database
+- It currently uses mock data. It should fetch and update data to the backend in the real case.
