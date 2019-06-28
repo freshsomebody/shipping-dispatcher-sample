@@ -35,6 +35,11 @@ export default {
     ...mapMutations('trailers', {
       setSelectedTrailerId: 'setSelectedTrailerId'
     })
+  },
+
+  destroyed () {
+    // reset selectedTrailerId
+    this.setSelectedTrailerId(null)
   }
 }
 </script>

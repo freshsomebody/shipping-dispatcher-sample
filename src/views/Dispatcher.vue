@@ -17,10 +17,9 @@
     <v-flex sm12 md4 v-if="totalWeight > 0">
       <h1>Availabe Trailers</h1>
       <TrailerItem
-        v-for="trailer in trailers"
+        v-for="trailer in availableTrailers"
         :key="trailer.id"
         :trailer="trailer"
-        v-show="trailer.capacity >= totalWeight"
       />
     </v-flex>
 
@@ -92,6 +91,10 @@ export default {
       return total
     },
 
+    availableTrailers () {
+      return this.trailers.filter(ware => ware.capacity >= this.totalWeight)
+    },
+
     mockToCities () {
       return this.mockCities.filter(city => city !== this.fromCity)
     }
@@ -100,7 +103,8 @@ export default {
   methods: {
     ...mapMutations({
       setSelectedTrailerId: 'trailers/setSelectedTrailerId',
-      setMission: 'setMission'
+      setMission: 'setMission',
+      clearCollection: 'wares/clearCollection'
     }),
 
     submitMission () {
@@ -119,6 +123,10 @@ export default {
 
       this.$router.push({ name: 'mission' })
     }
+  },
+
+  destroyed () {
+    this.clearCollection()
   }
 }
 </script>

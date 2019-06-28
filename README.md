@@ -42,5 +42,5 @@ npm run lint
 - [ ] It currently uses mock data. It should fetch and update data to the backend in the real case.
 
 ### Known bugs
-- [ ] The total weight in the dispatcher page won't reset after destroyed
-- [ ] The selected trailer won't reset after destroyed
+- [X] The total weight in the dispatcher page won't reset after destroyed
+- [X] The selected trailer won't reset after destroyed

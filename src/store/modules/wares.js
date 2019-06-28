@@ -20,6 +20,10 @@ export default {
 
     setCollection (state, collection) {
       state.collection = Object.assign({}, state.collection, collection)
+    },
+
+    clearCollection (state) {
+      state.collection = {}
     }
   }
 }
