@@ -23,9 +23,9 @@ npm run lint
 ## Go through
 1. Open http://localhost:8080 in the browser
 2. Input the require fields
-  2.1 Select the ware collection
-  2.2 Select the trailer
-  2.3 Select the routing cities
+  - 2.1 Select the ware collection
+  - 2.2 Select the trailer
+  - 2.3 Select the routing cities
 3. Click on Submit button
 4. The page should be directed to http://localhost:8080/mission
   - This page is not yet beautified
