@@ -37,12 +37,12 @@ npm run reset-db
   - Page http://localhost:8080/mission/:MISSION_ID is not yet beautified
 
 ## Todo
-> versions greater than 1.0.0 were committed after the 3 hours deadline
+> Todo items will be implemented in the "enhancement" branch
 ### Craft the mission page
-- [ ] Right now the mission page directly shows the JSON data. It should be beautify for user friendly.
+- [ ] Right now the mission page directly shows the JSON data. It should be beautified for user friendly.
 
 ### Suggested journey
-- [ ] Can integrate with APIs, like Google maps APIs, to provides more precise suggestion.
+- [ ] Can integrate with APIs, like Google maps APIs, to provides more useful suggestions.
 
 ### Interact with the backend and database
 - [X] It currently uses mock data. It should fetch and update data to the backend in the real case.
