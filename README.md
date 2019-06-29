@@ -32,7 +32,7 @@ npm run lint
   - Page http://localhost:8080/mission is not yet beautified
 
 ## Todo
-> versions greater than 1.0.0 were committed after the time limitation
+> Todo items will be implemented in the "enhancement" branch
 ### Craft the mission page
 - [ ] Right now the mission page directly shows the JSON data. It should be beautified for user friendly.
 
