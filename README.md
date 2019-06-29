@@ -39,7 +39,8 @@ npm run lint
 - [ ] Can integrate with APIs, like Google maps APIs, to provides more precise suggestion.
 
 ### Interact with the backend and database
-- [ ] It currently uses mock data. It should fetch and update data to the backend in the real case.
+- [X] It currently uses mock data. It should fetch and update data to the backend in the real case.
+  - Add json-server to simulate a RESTful backend server
 
 ### Known bugs
 - [X] The total weight in the dispatcher page won't reset after destroyed
