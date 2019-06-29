@@ -14,7 +14,7 @@ export default new Router({
       component: Dispatcher
     },
     {
-      path: '/mission',
+      path: '/mission/:missionId',
       name: 'mission',
       component: () => import('./views/Mission.vue')
     }

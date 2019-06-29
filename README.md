@@ -1,4 +1,5 @@
-# code-challenge
+# Shipping-dispatcher-sample
+A small sample simulate how a dispatcher may arrange the wares collection, trailers and route.
 
 ## Project setup
 ```
@@ -10,10 +11,6 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
 ### Lints and fixes files
 ```
@@ -41,6 +38,7 @@ npm run lint
 ### Interact with the backend and database
 - [X] It currently uses mock data. It should fetch and update data to the backend in the real case.
   - Add json-server to simulate a RESTful backend server
+  - Fetch the data from the RESTful backend instead of static mockData files
 
 ### Known bugs
 - [X] The total weight in the dispatcher page won't reset after destroyed

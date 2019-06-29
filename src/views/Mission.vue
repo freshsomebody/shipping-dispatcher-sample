@@ -5,13 +5,32 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
-  computed: {
-    ...mapState({
-      mission: state => state.mission
+  data () {
+    return {
+      missionId: this.$route.params.missionId,
+      collections: []
+    }
+  },
+
+  methods: {
+    ...mapActions({
+      fetchMissionById: 'missions/fetchMissionById'
     })
+  },
+
+  async created () {
+    try {
+      const mission = this.fetchMissionById(this.missionId)
+      this.collections = mission.data.collections
+
+      const trailerId = mission.data.trailer
+      const route = mission.data.route
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 </script>

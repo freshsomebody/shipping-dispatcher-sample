@@ -1,17 +1,21 @@
-// use mock data
-import trailers from '../../mockData/trailers'
+import axios from 'axios'
 
 export default {
   namespaced: true,
 
   state: {
-    trailers: trailers,
+    trailers: [],
     selectedTrailerId: null
   },
 
   getters: {},
 
-  actions: {},
+  actions: {
+    async fetchTrailers ({ commit }) {
+      const { data } = await axios.get('/trailers')
+      commit('setTrailers', data)
+    }
+  },
 
   mutations: {
     setTrailers (state, newTrailers) {

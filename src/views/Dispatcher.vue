@@ -16,6 +16,7 @@
 
     <v-flex sm12 md4 v-if="totalWeight > 0">
       <h1>Availabe Trailers</h1>
+      <h3 v-if="availableTrailers.length === 0">No available trailers</h3>
       <TrailerItem
         v-for="trailer in availableTrailers"
         :key="trailer.id"
@@ -26,20 +27,24 @@
     <v-flex sm12 md4 v-if="totalWeight > 0 && selectedTrailerId">
       <h1>Route</h1>
       <v-select
-        :items="mockCities"
-        label="From city"
-        v-model="fromCity"
+        :items="warehouses"
+        item-text="name"
+        item-value="id"
+        label="From"
+        v-model="srcWarehouse"
       ></v-select>
 
       <v-select
-        :items="mockToCities"
-        label="To city"
-        v-model="toCity"
+        :items="availableDestWarehouses"
+        item-text="name"
+        item-value="id"
+        label="To"
+        v-model="destWarehouse"
       ></v-select>
 
       <v-btn
-        v-if="totalWeight > 0 && selectedTrailerId && fromCity && toCity"
-        to="/mission" @click="submitMission"
+        v-if="totalWeight > 0 && selectedTrailerId && srcWarehouse && destWarehouse"
+        @click="submitMission"
       >Submit</v-btn>
     </v-flex>
   </v-layout>
@@ -47,12 +52,9 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 import TrailerItem from '@/components/TrailerItem'
 import WareItem from '@/components/WareItem'
-
-// mock city data
-import Cities from '@/mockData/cities'
 
 export default {
   components: {
@@ -62,9 +64,8 @@ export default {
 
   data () {
     return {
-      mockCities: Cities,
-      fromCity: null,
-      toCity: null
+      srcWarehouse: null,
+      destWarehouse: null
     }
   },
 
@@ -73,7 +74,8 @@ export default {
       wares: state => state.wares.wares,
       collection: state => state.wares.collection,
       trailers: state => state.trailers.trailers,
-      selectedTrailerId: state => state.trailers.selectedTrailerId
+      selectedTrailerId: state => state.trailers.selectedTrailerId,
+      warehouses: state => state.warehouses.warehouses
     }),
 
     totalWeight () {
@@ -84,10 +86,6 @@ export default {
         total += ware.weight * ware.quantity
       })
 
-      if (total === 0) {
-        this.setSelectedTrailerId(null)
-      }
-
       return total
     },
 
@@ -95,33 +93,58 @@ export default {
       return this.trailers.filter(ware => ware.capacity >= this.totalWeight)
     },
 
-    mockToCities () {
-      return this.mockCities.filter(city => city !== this.fromCity)
+    availableDestWarehouses () {
+      if (this.totalWeight === 0) return []
+
+      return this.warehouses.filter(warehouse => warehouse.id !== this.srcWarehouse)
     }
   },
 
   methods: {
+    ...mapActions({
+      fetchWares: 'wares/fetchWares',
+      fetchTrailers: 'trailers/fetchTrailers',
+      fetchWarehouses: 'warehouses/fetchWarehouses',
+      createNewMission: 'missions/createNewMission'
+    }),
+
     ...mapMutations({
       setSelectedTrailerId: 'trailers/setSelectedTrailerId',
       setMission: 'setMission',
       clearCollection: 'wares/clearCollection'
     }),
 
-    submitMission () {
+    async submitMission () {
       const collection = Object.values(this.collection).filter(ware => ware.quantity > 0)
       const trailer = this.selectedTrailerId
       const route = [
-        this.fromCity,
-        this.toCity
+        this.srcWarehouse,
+        this.destWarehouse
       ]
 
-      this.setMission({
+      const newMission = {
         collection,
         trailer,
         route
-      })
+      }
 
-      this.$router.push({ name: 'mission' })
+      try {
+        const { data } = await this.createNewMission(newMission)
+
+        this.$router.push({ name: 'mission', params: { missionId: data.id } })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  },
+
+  async created () {
+    try {
+      await this.fetchWares()
+      await this.fetchTrailers()
+      await this.fetchWarehouses()
+    } catch (error) {
+      console.log(error)
     }
   },
 

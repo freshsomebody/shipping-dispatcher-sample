@@ -1,17 +1,21 @@
-// use mock data
-import wares from '../../mockData/wares'
+import axios from 'axios'
 
 export default {
   namespaced: true,
 
   state: {
-    wares: wares,
+    wares: [],
     collection: {}
   },
 
   getters: {},
 
-  actions: {},
+  actions: {
+    async fetchWares ({ commit }) {
+      const { data } = await axios.get('/wares')
+      commit('setWares', data)
+    }
+  },
 
   mutations: {
     setWares (state, newWares) {

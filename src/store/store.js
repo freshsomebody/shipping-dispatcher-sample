@@ -3,13 +3,17 @@ import Vuex from 'vuex'
 
 import trailers from './modules/trailers'
 import wares from './modules/wares'
+import warehouses from './modules/warehouses'
+import missions from './modules/missions'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
     trailers,
-    wares
+    wares,
+    warehouses,
+    missions
   },
 
   state: {
@@ -18,9 +22,5 @@ export default new Vuex.Store({
 
   actions: {},
 
-  mutations: {
-    setMission (state, mission) {
-      state.mission = mission
-    }
-  }
+  mutations: {}
 })
