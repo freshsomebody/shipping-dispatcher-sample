@@ -6,15 +6,24 @@ A small sample simulate how a dispatcher may arrange the wares collection, trail
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Execute the fronend and beackend programs
+Frontend
 ```
 npm run serve
 ```
-
+Backend
+```
+npm run database
+```
 
 ### Lints and fixes files
 ```
 npm run lint
+```
+
+### Reset the data in the database
+```
+npm run reset-db
 ```
 
 ## Go through
@@ -24,8 +33,8 @@ npm run lint
   - 2.2 Select the trailer
   - 2.3 Select the routing cities
 3. Click on Submit button
-4. The page should be directed to http://localhost:8080/mission
-  - Page http://localhost:8080/mission is not yet beautified
+4. The page should be directed to http://localhost:8080/mission/:MISSION_ID
+  - Page http://localhost:8080/mission/:MISSION_ID is not yet beautified
 
 ## Todo
 > versions greater than 1.0.0 were committed after the 3 hours deadline
