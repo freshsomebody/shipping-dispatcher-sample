@@ -34,7 +34,6 @@ npm run reset-db
   - 2.3 Select the routing cities
 3. Click on Submit button
 4. The page should be directed to http://localhost:8080/mission/:MISSION_ID
-  - Page http://localhost:8080/mission/:MISSION_ID is not yet beautified
 
 ## Todo
 ### Craft the mission page
