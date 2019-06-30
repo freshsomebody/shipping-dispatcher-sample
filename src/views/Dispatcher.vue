@@ -4,6 +4,7 @@
     text-xs-center
     wrap
   >
+    <!-- Ware list -->
     <v-flex sm12 md4>
       <h1>Ware Collection</h1>
       <WareItem
@@ -14,6 +15,7 @@
       <h2>Total weight: {{ totalWeight }}</h2>
     </v-flex>
 
+    <!-- Trailer list -->
     <v-flex sm12 md4 v-if="totalWeight > 0">
       <h1>Availabe Trailers</h1>
       <h3 v-if="availableTrailers.length === 0">No available trailers</h3>
@@ -24,6 +26,7 @@
       />
     </v-flex>
 
+    <!-- Route list and submit button -->
     <v-flex sm12 md4 v-if="totalWeight > 0 && selectedTrailerId">
       <h1>Route</h1>
       <v-select
@@ -64,8 +67,8 @@ export default {
 
   data () {
     return {
-      srcWarehouse: null,
-      destWarehouse: null
+      srcWarehouse: null, // the warehouse id that the trailer departs
+      destWarehouse: null // the warehouse id that the trailer arrives
     }
   },
 
@@ -78,6 +81,7 @@ export default {
       warehouses: state => state.warehouses.warehouses
     }),
 
+    // Compute the total weight of the ware collection
     totalWeight () {
       if (Object.values(this.collection).length <= 0) return 0
 
@@ -89,10 +93,12 @@ export default {
       return total
     },
 
+    // Return the trailers whos capactiy >= totalWeight
     availableTrailers () {
       return this.trailers.filter(ware => ware.capacity >= this.totalWeight)
     },
 
+    // Return a warehouse list without the one selected in srcWarehouse
     availableDestWarehouses () {
       if (this.totalWeight === 0) return []
 
@@ -114,6 +120,7 @@ export default {
       clearCollection: 'wares/clearCollection'
     }),
 
+    // Submit the mission
     async submitMission () {
       const collection = Object.values(this.collection).filter(ware => ware.quantity > 0)
       const trailer = this.selectedTrailerId
@@ -129,22 +136,25 @@ export default {
       }
 
       try {
+        // Save the mission into database
         const { data } = await this.createNewMission(newMission)
 
+        // Route to the mission page if the creation was successful
         this.$router.push({ name: 'mission', params: { missionId: data.id } })
       } catch (error) {
-        console.log(error)
+        alert(error)
       }
     }
   },
 
   async created () {
     try {
+      // fetch wares, trailers and warehouses data
       await this.fetchWares()
       await this.fetchTrailers()
       await this.fetchWarehouses()
     } catch (error) {
-      console.log(error)
+      alert(error)
     }
   },
 

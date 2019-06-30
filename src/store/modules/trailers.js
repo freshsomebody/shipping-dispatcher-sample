@@ -14,6 +14,10 @@ export default {
     async fetchTrailers ({ commit }) {
       const { data } = await axios.get('/trailers')
       commit('setTrailers', data)
+    },
+
+    fetchTrailerById (store, trailerId) {
+      return axios.get(`/trailers?id=${trailerId}`)
     }
   },
 

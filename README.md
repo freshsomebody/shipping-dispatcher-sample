@@ -37,12 +37,12 @@ npm run reset-db
   - Page http://localhost:8080/mission/:MISSION_ID is not yet beautified
 
 ## Todo
-> Todo items will be implemented in the "enhancement" branch
 ### Craft the mission page
-- [ ] Right now the mission page directly shows the JSON data. It should be beautified for user friendly.
+- [X] Right now the mission page directly shows the JSON data. It should be beautified for user friendly.
 
 ### Suggested journey
-- [ ] Can integrate with APIs, like Google maps APIs, to provides more useful suggestions.
+- [X] Can integrate with APIs, like Google maps APIs, to provides more useful suggestions.
+  - I choose HERE APIs eventually since it supports truck routing
 
 ### Interact with the backend and database
 - [X] It currently uses mock data. It should fetch and update data to the backend in the real case.
