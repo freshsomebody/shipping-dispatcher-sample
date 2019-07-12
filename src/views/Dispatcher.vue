@@ -27,7 +27,11 @@
     </v-flex>
 
     <!-- Route list and submit button -->
-    <v-flex sm12 md4 v-if="totalWeight > 0 && selectedTrailerId">
+    <v-flex
+      sm12 md4
+      v-if="totalWeight > 0 && selectedTrailerId"
+      class="routeSelectors"
+    >
       <h1>Route</h1>
       <v-select
         :items="warehouses"
@@ -47,6 +51,7 @@
 
       <v-btn
         v-if="totalWeight > 0 && selectedTrailerId && srcWarehouse && destWarehouse"
+        class="submitBtn"
         @click="submitMission"
       >Submit</v-btn>
     </v-flex>
@@ -95,7 +100,7 @@ export default {
 
     // Return the trailers whos capactiy >= totalWeight
     availableTrailers () {
-      return this.trailers.filter(ware => ware.capacity >= this.totalWeight)
+      return this.trailers.filter(trailer => trailer.capacity >= this.totalWeight)
     },
 
     // Return a warehouse list without the one selected in srcWarehouse
