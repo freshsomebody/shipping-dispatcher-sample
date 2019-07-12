@@ -16,6 +16,11 @@ Backend
 npm run database
 ```
 
+### Tests
+```
+npm run test:unit
+```
+
 ### Lints and fixes files
 ```
 npm run lint
