@@ -1,7 +1,7 @@
 <template>
 <v-container grid-list-lg>
   <v-layout
-    text-xs-center
+    text-center
     wrap
   >
     <!-- Ware list -->

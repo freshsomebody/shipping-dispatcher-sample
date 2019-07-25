@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { shallowMount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
+import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import Vuetify from 'vuetify'
 import flushPromises from 'flush-promises'

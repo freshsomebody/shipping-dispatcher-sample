@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar app>
+    <v-app-bar app>
       <v-toolbar-title class="headline text-uppercase">
         <router-link to="/" tag="button">
           <span>Dispatcher</span>
@@ -8,7 +8,7 @@
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-    </v-toolbar>
+    </v-app-bar>
 
     <v-content>
       <router-view />
